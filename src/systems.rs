@@ -29,9 +29,9 @@ pub(crate) struct SplashBackground {
 pub(crate) fn splash_end<'a, S: FreelyMutableState>(
     mut cmd: Commands,
     next_state: S,
-    brands: impl Iterator<Item = (Entity, &'a Node, &'a ClearSplash)>,
+    brands: Query<(Entity, &Node, &ClearSplash)>,
 ) {
-    for (entity, _, _) in brands {
+    for (entity, _, _) in brands.iter() {
         cmd.entity(entity).despawn_recursive();
     }
     cmd.insert_resource(NextState::Pending(next_state));
@@ -72,7 +72,7 @@ pub(crate) fn update_splash<S: FreelyMutableState>(
         }
     }
     if clear {
-        splash_end(cmd, max_screens.1.clone(), brands.iter());
+        splash_end(cmd, max_screens.1.clone(), brands);
     }
 }
 
@@ -111,6 +111,6 @@ pub(crate) fn splash_skip<S: FreelyMutableState>(
     }
 
     if done || !dev_skip.is_empty() {
-        splash_end(cmd, max_screens.1.clone(), brands.iter());
+        splash_end(cmd, max_screens.1.clone(), brands);
     }
 }
