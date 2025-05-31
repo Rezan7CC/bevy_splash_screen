@@ -72,4 +72,7 @@ bevy = { version = "0.15.3", default-features = false , features = [
     "bevy_state",
 ] }
 bevy_math = "0.15.3"
-bevy_tweening = { git = "https://github.com/Rezan7CC/bevy_tweening", rev = "6ef369e" }
+bevy_tweening = "0.11.0"
+
+[patch.crates-io]
+bevy_tweening = { git = "https://github.com/SergioRibera/bevy_tweening", branch = "infinite_mirrored" }
