@@ -1,6 +1,9 @@
 use bevy::color::palettes;
 use bevy::prelude::*;
-use bevy_splash_screen::{SplashAssetType, SplashItem, SplashPlugin, SplashScreen, SplashText, SplashTextSection, SplashType};
+use bevy_splash_screen::{
+    SplashAssetType, SplashItem, SplashPlugin, SplashScreen, SplashText, SplashTextSection,
+    SplashType,
+};
 use std::time::Duration;
 
 #[derive(Clone, Copy, Debug, Default, States, Hash, PartialEq, Eq)]
@@ -52,14 +55,12 @@ fn main() {
                         },
                         SplashItem {
                             asset: SplashAssetType::SingleText(SplashText {
-                                sections: vec![
-                                    SplashTextSection {
-                                        text: "With Bevy".into(),
-                                        text_font: "FiraSans-Bold.ttf".to_string(),
-                                        text_size: 32.,
-                                        text_color: Color::WHITE.into(),
-                                    }
-                                ],
+                                sections: vec![SplashTextSection {
+                                    text: "With Bevy".into(),
+                                    text_font: "FiraSans-Bold.ttf".to_string(),
+                                    text_size: 32.,
+                                    text_color: Color::WHITE.into(),
+                                }],
                                 text_alignment: JustifyText::Center,
                             }),
                             tint: Color::WHITE,
@@ -78,14 +79,12 @@ fn main() {
                     brands: vec![
                         SplashItem {
                             asset: SplashAssetType::SingleText(SplashText {
-                                sections: vec![
-                                    SplashTextSection {
-                                        text: "Hola Hola Hola".into(),
-                                        text_font: "FiraSans-Bold.ttf".to_string(),
-                                        text_size: 32.,
-                                        text_color: Color::WHITE.into(),
-                                    }
-                                ],
+                                sections: vec![SplashTextSection {
+                                    text: "Hola Hola Hola".into(),
+                                    text_font: "FiraSans-Bold.ttf".to_string(),
+                                    text_size: 32.,
+                                    text_color: Color::WHITE.into(),
+                                }],
                                 text_alignment: JustifyText::Center,
                             }),
                             tint: palettes::basic::YELLOW.into(),
@@ -97,14 +96,12 @@ fn main() {
                         },
                         SplashItem {
                             asset: SplashAssetType::SingleText(SplashText {
-                                sections: vec![
-                                    SplashTextSection {
-                                        text: "Hello Hello Hello".into(),
-                                        text_font: "FiraSans-Bold.ttf".to_string(),
-                                        text_size: 32.,
-                                        text_color: Color::WHITE.into(),
-                                    }
-                                ],
+                                sections: vec![SplashTextSection {
+                                    text: "Hello Hello Hello".into(),
+                                    text_font: "FiraSans-Bold.ttf".to_string(),
+                                    text_size: 32.,
+                                    text_color: Color::WHITE.into(),
+                                }],
                                 text_alignment: JustifyText::Center,
                             }),
                             tint: Srgba::BLUE.into(),
@@ -116,14 +113,12 @@ fn main() {
                         },
                         SplashItem {
                             asset: SplashAssetType::SingleText(SplashText {
-                                sections: vec![
-                                    SplashTextSection {
-                                        text: "Test Test Test".into(),
-                                        text_font: "FiraSans-Bold.ttf".to_string(),
-                                        text_size: 32.,
-                                        text_color: Color::WHITE.into(),
-                                    }
-                                ],
+                                sections: vec![SplashTextSection {
+                                    text: "Test Test Test".into(),
+                                    text_font: "FiraSans-Bold.ttf".to_string(),
+                                    text_size: 32.,
+                                    text_color: Color::WHITE.into(),
+                                }],
                                 text_alignment: JustifyText::Center,
                             }),
                             tint: Color::WHITE,
@@ -135,14 +130,12 @@ fn main() {
                         },
                         SplashItem {
                             asset: SplashAssetType::SingleText(SplashText {
-                                sections: vec![
-                                    SplashTextSection {
-                                        text: "Bevy Bevy Bevy".into(),
-                                        text_font: "FiraSans-Bold.ttf".to_string(),
-                                        text_size: 32.,
-                                        text_color: Color::WHITE.into(),
-                                    }
-                                ],
+                                sections: vec![SplashTextSection {
+                                    text: "Bevy Bevy Bevy".into(),
+                                    text_font: "FiraSans-Bold.ttf".to_string(),
+                                    text_size: 32.,
+                                    text_color: Color::WHITE.into(),
+                                }],
                                 text_alignment: JustifyText::Center,
                             }),
                             tint: palettes::basic::PURPLE.into(),

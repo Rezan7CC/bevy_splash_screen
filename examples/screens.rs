@@ -1,6 +1,8 @@
 use bevy::color::palettes;
 use bevy::prelude::*;
-use bevy_splash_screen::{SplashAssetType, SplashItem, SplashPlugin, SplashScreen, SplashText, SplashTextSection};
+use bevy_splash_screen::{
+    SplashAssetType, SplashItem, SplashPlugin, SplashScreen, SplashText, SplashTextSection,
+};
 use std::time::Duration;
 
 #[derive(Clone, Copy, Debug, Default, States, Hash, PartialEq, Eq)]
@@ -54,14 +56,12 @@ fn main() {
                 .add_screen(SplashScreen {
                     brands: vec![SplashItem {
                         asset: SplashAssetType::SingleText(SplashText {
-                            sections: vec![
-                                SplashTextSection {
-                                    text: "With Bevy Engine".into(),
-                                    text_font: "FiraSans-Bold.ttf".to_string(),
-                                    text_size: 32.,
-                                    text_color: Color::WHITE.into(),
-                                }
-                            ],
+                            sections: vec![SplashTextSection {
+                                text: "With Bevy Engine".into(),
+                                text_font: "FiraSans-Bold.ttf".to_string(),
+                                text_size: 32.,
+                                text_color: Color::WHITE.into(),
+                            }],
                             text_alignment: JustifyText::Center,
                         }),
                         tint: Color::WHITE,
@@ -78,14 +78,12 @@ fn main() {
                 .add_screen(SplashScreen {
                     brands: vec![SplashItem {
                         asset: SplashAssetType::SingleText(SplashText {
-                            sections: vec![
-                                SplashTextSection {
-                                    text: "With Love <3".into(),
-                                    text_font: "FiraSans-Bold.ttf".to_string(),
-                                    text_size: 32.,
-                                    text_color: Color::WHITE.into(),
-                                }
-                            ],
+                            sections: vec![SplashTextSection {
+                                text: "With Love <3".into(),
+                                text_font: "FiraSans-Bold.ttf".to_string(),
+                                text_size: 32.,
+                                text_color: Color::WHITE.into(),
+                            }],
                             text_alignment: JustifyText::Center,
                         }),
                         tint: Srgba::RED.into(),

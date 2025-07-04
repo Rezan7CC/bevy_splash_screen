@@ -1,7 +1,9 @@
 use bevy::color::palettes;
 use bevy::prelude::*;
-use bevy_splash_screen::{SplashAssetType, SplashItem, SplashPlugin, SplashScreen, SplashText, SplashTextSection};
 use bevy_math::curve::easing::EaseFunction;
+use bevy_splash_screen::{
+    SplashAssetType, SplashItem, SplashPlugin, SplashScreen, SplashText, SplashTextSection,
+};
 use std::time::Duration;
 
 #[derive(Clone, Copy, Debug, Default, States, Hash, PartialEq, Eq)]
@@ -29,22 +31,21 @@ fn main() {
                                         text_size: 40.,
                                         text_color: Color::WHITE.into(),
                                     },
-                                   SplashTextSection {
-                                       text: "by\n".into(),
-                                       text_font: "FiraSans-Bold.ttf".to_string(),
-                                       text_size: 24.,
-                                       text_color: Color::WHITE.with_alpha(0.75).into(),
-                                   },
-                                   SplashTextSection {
-                                       text: "Sergio Ribera\n".into(),
-                                       text_font: "FiraSans-Bold.ttf".to_string(),
-                                       text_size: 32.,
-                                       text_color: Srgba::BLUE.into(),
-                                   },
-                               ],
+                                    SplashTextSection {
+                                        text: "by\n".into(),
+                                        text_font: "FiraSans-Bold.ttf".to_string(),
+                                        text_size: 24.,
+                                        text_color: Color::WHITE.with_alpha(0.75).into(),
+                                    },
+                                    SplashTextSection {
+                                        text: "Sergio Ribera\n".into(),
+                                        text_font: "FiraSans-Bold.ttf".to_string(),
+                                        text_size: 32.,
+                                        text_color: Srgba::BLUE.into(),
+                                    },
+                                ],
                                 text_alignment: JustifyText::Center,
-                            }
-                            ),
+                            }),
                             tint: palettes::css::SEA_GREEN.into(),
                             width: Val::Percent(30.),
                             height: Val::Px(150.),

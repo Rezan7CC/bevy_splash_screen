@@ -3,7 +3,11 @@ use std::time::Duration;
 use bevy::prelude::*;
 use bevy_tweening::*;
 
-use crate::{systems::{ClearSplash, SplashBackground}, InstanceLens, SplashAssetType, SplashImageColorLens, SplashItem, SplashScreens, SplashTextColorLens, SplashType, WaitScreenType, SplashTextSection};
+use crate::{
+    systems::{ClearSplash, SplashBackground},
+    InstanceLens, SplashAssetType, SplashImageColorLens, SplashItem, SplashScreens,
+    SplashTextColorLens, SplashTextSection, SplashType, WaitScreenType,
+};
 
 fn get_max_duration(screens: SplashScreens, curr_screen: usize) -> Duration {
     if curr_screen == 0 {
@@ -27,29 +31,30 @@ fn get_max_duration(screens: SplashScreens, curr_screen: usize) -> Duration {
     }
 }
 
-fn create_text_color_animator(brand: &SplashItem, text_section: &SplashTextSection, i_screen: usize, max_duration: Duration) -> Animator<TextColor> {
+fn create_text_color_animator(
+    brand: &SplashItem,
+    text_section: &SplashTextSection,
+    i_screen: usize,
+    max_duration: Duration,
+) -> Animator<TextColor> {
     Animator::new(
         Tween::new(
             brand.ease_function,
             Duration::from_secs(1),
-            SplashTextColorLens::new(
-                text_section.text_color.0.with_alpha(0.),
-            ),
+            SplashTextColorLens::new(text_section.text_color.0.with_alpha(0.)),
         )
-            .then(
-                Delay::new(max_duration).then(
-                    Tween::new(
-                        brand.ease_function,
-                        brand.duration,
-                        SplashTextColorLens::new(
-                            text_section.text_color.0.with_alpha(1.),
-                        ),
-                    )
-                        .with_repeat_strategy(RepeatStrategy::MirroredRepeat)
-                        .with_repeat_count(RepeatCount::Finite(2))
-                        .with_completed_event(i_screen as u64),
-                ),
+        .then(
+            Delay::new(max_duration).then(
+                Tween::new(
+                    brand.ease_function,
+                    brand.duration,
+                    SplashTextColorLens::new(text_section.text_color.0.with_alpha(1.)),
+                )
+                .with_repeat_strategy(RepeatStrategy::MirroredRepeat)
+                .with_repeat_count(RepeatCount::Finite(2))
+                .with_completed_event(i_screen as u64),
             ),
+        ),
     )
 }
 
@@ -59,7 +64,8 @@ pub(crate) fn create_splash(
     screens: Res<SplashScreens>,
 ) {
     // Background
-    cmd.spawn((Node {
+    cmd.spawn((
+        Node {
             display: Display::Flex,
             position_type: PositionType::Absolute,
             width: Val::Percent(100.),
@@ -67,7 +73,7 @@ pub(crate) fn create_splash(
             overflow: Overflow::clip(),
             ..default()
         },
-        BackgroundColor(screens.0[0].background_color.0)
+        BackgroundColor(screens.0[0].background_color.0),
     ))
     .insert(ClearSplash)
     .insert(SplashBackground {
@@ -90,24 +96,26 @@ pub(crate) fn create_splash(
         // Parent of screen content
         // Contains brands
         cmd.spawn(Node {
-                flex_wrap,
-                flex_direction,
-                display: Display::Flex,
-                position_type: PositionType::Absolute,
-                align_items: AlignItems::Center,
-                align_content: AlignContent::Center,
-                justify_content: JustifyContent::Center,
-                width: Val::Percent(100.),
-                height: Val::Percent(100.),
-                overflow: Overflow::clip(),
-                ..default()
+            flex_wrap,
+            flex_direction,
+            display: Display::Flex,
+            position_type: PositionType::Absolute,
+            align_items: AlignItems::Center,
+            align_content: AlignContent::Center,
+            justify_content: JustifyContent::Center,
+            width: Val::Percent(100.),
+            height: Val::Percent(100.),
+            overflow: Overflow::clip(),
+            ..default()
         })
         .insert(ClearSplash)
         .with_children(|cmd| {
             for brand in screen.brands.iter() {
                 match &brand.asset {
                     SplashAssetType::SingleText(splash_text) => {
-                        if let Some((first_section, remaining_sections)) = splash_text.sections.split_last() {
+                        if let Some((first_section, remaining_sections)) =
+                            splash_text.sections.split_last()
+                        {
                             let mut parent_text = cmd.spawn((
                                 first_section.text.clone(),
                                 TextFont {
@@ -127,7 +135,12 @@ pub(crate) fn create_splash(
                                     justify: splash_text.text_alignment,
                                     ..default()
                                 },
-                                create_text_color_animator(brand, first_section, i_screen, max_duration),
+                                create_text_color_animator(
+                                    brand,
+                                    first_section,
+                                    i_screen,
+                                    max_duration,
+                                ),
                             ));
 
                             for section in remaining_sections.iter().rev() {
@@ -147,7 +160,12 @@ pub(crate) fn create_splash(
                                             height: brand.height,
                                             ..default()
                                         },
-                                        create_text_color_animator(brand, section, i_screen, max_duration),
+                                        create_text_color_animator(
+                                            brand,
+                                            section,
+                                            i_screen,
+                                            max_duration,
+                                        ),
                                     ));
                                 });
                             }

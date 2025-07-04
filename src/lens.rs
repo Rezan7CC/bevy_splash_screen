@@ -29,7 +29,6 @@ impl SplashTextColorLens {
 
 impl Lens<TextColor> for SplashTextColorLens {
     fn lerp(&mut self, target: &mut dyn Targetable<TextColor>, ratio: f32) {
-
         use crate::ColorLerper as _;
         let value = self.0.with_alpha(0.).lerp(&self.0, ratio);
         target.0 = value;

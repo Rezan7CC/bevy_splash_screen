@@ -1,7 +1,10 @@
 use std::time::Duration;
 
 use bevy::prelude::*;
-use bevy_splash_screen::{ClearSplash, SplashAssetType, SplashItem, SplashPlugin, SplashScreen, SplashScreenSkipEvent, SplashText, SplashTextColorLens, SplashTextSection};
+use bevy_splash_screen::{
+    ClearSplash, SplashAssetType, SplashItem, SplashPlugin, SplashScreen, SplashScreenSkipEvent,
+    SplashText, SplashTextColorLens, SplashTextSection,
+};
 use bevy_tweening::*;
 
 #[derive(Clone, Copy, Debug, Default, States, Hash, PartialEq, Eq)]
@@ -51,14 +54,12 @@ fn main() {
                 .add_screen(SplashScreen {
                     brands: vec![SplashItem {
                         asset: SplashAssetType::SingleText(SplashText {
-                            sections: vec![
-                                SplashTextSection {
-                                    text: "Custom Skip\n".into(),
-                                    text_font: "FiraSans-Bold.ttf".to_string(),
-                                    text_size: 75.,
-                                    text_color: Color::WHITE.into(),
-                                },
-                            ],
+                            sections: vec![SplashTextSection {
+                                text: "Custom Skip\n".into(),
+                                text_font: "FiraSans-Bold.ttf".to_string(),
+                                text_size: 75.,
+                                text_color: Color::WHITE.into(),
+                            }],
                             text_alignment: JustifyText::Center,
                         }),
                         tint: Color::WHITE,
@@ -93,13 +94,16 @@ fn create_scene(mut cmd: Commands, assets: ResMut<AssetServer>) {
     })
     .insert(ClearSplash)
     .with_children(|cmd| {
-        cmd.spawn((Button::default(), 
-          Node {
-            height: Val::Px(65.0),
-            justify_content: JustifyContent::Center,
-            align_items: AlignItems::Center,
-            ..default()
-        }, BackgroundColor(Color::WHITE.with_alpha(0.))))
+        cmd.spawn((
+            Button::default(),
+            Node {
+                height: Val::Px(65.0),
+                justify_content: JustifyContent::Center,
+                align_items: AlignItems::Center,
+                ..default()
+            },
+            BackgroundColor(Color::WHITE.with_alpha(0.)),
+        ))
         .with_children(|cmd| {
             cmd.spawn((
                 Text("Press Any Key or Touch screen for skip".into()),
