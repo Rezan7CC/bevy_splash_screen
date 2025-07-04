@@ -32,7 +32,7 @@ pub(crate) fn splash_end<'a, S: FreelyMutableState>(
     brands: Query<(Entity, &Node, &ClearSplash)>,
 ) {
     for (entity, _, _) in brands.iter() {
-        cmd.entity(entity).despawn_recursive();
+        cmd.entity(entity).despawn();
     }
     cmd.insert_resource(NextState::Pending(next_state));
 }

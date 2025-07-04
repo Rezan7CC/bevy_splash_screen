@@ -128,7 +128,7 @@ fn button_system(
 ) {
     for interaction in &mut interaction_query {
         if *interaction == Interaction::Pressed {
-            send_skip.send(SplashScreenSkipEvent);
+            send_skip.write(SplashScreenSkipEvent);
         }
     }
 }
