@@ -26,7 +26,7 @@ pub(crate) struct SplashBackground {
 //
 // Remove all nodes when splash end
 //
-pub(crate) fn splash_end<'a, S: FreelyMutableState>(
+pub(crate) fn splash_end<S: FreelyMutableState>(
     mut cmd: Commands,
     next_state: S,
     brands: Query<(Entity, &Node, &ClearSplash)>,

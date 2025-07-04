@@ -11,7 +11,7 @@ fn get_max_duration(screens: SplashScreens, curr_screen: usize) -> Duration {
     }
     let next_screen = screens.0.get(curr_screen - 1).unwrap();
 
-    return match next_screen.wait_to_start {
+    match next_screen.wait_to_start {
         WaitScreenType::AfterEnd => Duration::from_secs(
             next_screen
                 .brands
@@ -24,7 +24,7 @@ fn get_max_duration(screens: SplashScreens, curr_screen: usize) -> Duration {
                 + 1,
         ),
         WaitScreenType::Specific(t) => t,
-    };
+    }
 }
 
 fn create_text_color_animator(brand: &SplashItem, text_section: &SplashTextSection, i_screen: usize, max_duration: Duration) -> Animator<TextColor> {
@@ -115,7 +115,7 @@ pub(crate) fn create_splash(
                                     font_size: first_section.text_size,
                                     ..default()
                                 },
-                                first_section.text_color.clone(),
+                                first_section.text_color,
                                 Node {
                                     flex_direction,
                                     flex_wrap,
@@ -139,7 +139,7 @@ pub(crate) fn create_splash(
                                             font_size: section.text_size,
                                             ..default()
                                         },
-                                        section.text_color.clone(),
+                                        section.text_color,
                                         Node {
                                             flex_direction,
                                             flex_wrap,
